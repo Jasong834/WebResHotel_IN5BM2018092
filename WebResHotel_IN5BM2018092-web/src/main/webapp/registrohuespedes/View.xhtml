@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistrohuespedesViewDlg" widgetVar="RegistrohuespedesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRegistrohuespedesTitle}">
+            <h:form id="RegistrohuespedesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{registrohuespedesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_idregistroHuespedes}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.idregistroHuespedes}" title="#{bundle.ViewRegistrohuespedesTitle_idregistroHuespedes}"/>
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_fechaentrada}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.fechaentrada}" title="#{bundle.ViewRegistrohuespedesTitle_fechaentrada}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_fechasalida}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.fechasalida}" title="#{bundle.ViewRegistrohuespedesTitle_fechasalida}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_estado}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.estado}" title="#{bundle.ViewRegistrohuespedesTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_cantidadpersonas}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.cantidadpersonas}" title="#{bundle.ViewRegistrohuespedesTitle_cantidadpersonas}"/>
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_idcliente}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.idcliente}" title="#{bundle.ViewRegistrohuespedesTitle_idcliente}"/>
+                        <h:outputText value="#{bundle.ViewRegistrohuespedesLabel_idreserva}"/>
+                        <h:outputText value="#{registrohuespedesController.selected.idreserva}" title="#{bundle.ViewRegistrohuespedesTitle_idreserva}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RegistrohuespedesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

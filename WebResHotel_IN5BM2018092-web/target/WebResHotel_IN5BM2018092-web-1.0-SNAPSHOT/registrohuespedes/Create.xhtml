@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistrohuespedesCreateDlg" widgetVar="RegistrohuespedesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRegistrohuespedesTitle}">
+            <h:form id="RegistrohuespedesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{registrohuespedesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_idregistroHuespedes}" for="idregistroHuespedes" />
+                        <p:inputText id="idregistroHuespedes" value="#{registrohuespedesController.selected.idregistroHuespedes}" title="#{bundle.CreateRegistrohuespedesTitle_idregistroHuespedes}" required="true" requiredMessage="#{bundle.CreateRegistrohuespedesRequiredMessage_idregistroHuespedes}"/>
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_fechaentrada}" for="fechaentrada" />
+                        <p:calendar id="fechaentrada" pattern="MM/dd/yyyy HH:mm:ss" value="#{registrohuespedesController.selected.fechaentrada}" title="#{bundle.EditRegistrohuespedesTitle_fechaentrada}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_fechasalida}" for="fechasalida" />
+                        <p:calendar id="fechasalida" pattern="MM/dd/yyyy HH:mm:ss" value="#{registrohuespedesController.selected.fechasalida}" title="#{bundle.EditRegistrohuespedesTitle_fechasalida}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{registrohuespedesController.selected.estado}" title="#{bundle.CreateRegistrohuespedesTitle_estado}" />
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_cantidadpersonas}" for="cantidadpersonas" />
+                        <p:inputText id="cantidadpersonas" value="#{registrohuespedesController.selected.cantidadpersonas}" title="#{bundle.CreateRegistrohuespedesTitle_cantidadpersonas}" />
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_idcliente}" for="idcliente" />
+                        <p:selectOneMenu id="idcliente" value="#{registrohuespedesController.selected.idcliente}" >
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="idclienteItem"
+                                           itemValue="#{idclienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRegistrohuespedesLabel_idreserva}" for="idreserva" />
+                        <p:selectOneMenu id="idreserva" value="#{registrohuespedesController.selected.idreserva}" >
+                            <f:selectItems value="#{reservaController.itemsAvailableSelectOne}"
+                                           var="idreservaItem"
+                                           itemValue="#{idreservaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{registrohuespedesController.create}" value="#{bundle.Save}" update="display,:RegistrohuespedesListForm:datalist,:growl" oncomplete="handleSubmit(args,'RegistrohuespedesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RegistrohuespedesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

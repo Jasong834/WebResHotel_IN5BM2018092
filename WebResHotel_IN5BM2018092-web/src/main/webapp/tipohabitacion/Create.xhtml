@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipohabitacionCreateDlg" widgetVar="TipohabitacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipohabitacionTitle}">
+            <h:form id="TipohabitacionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipohabitacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTipohabitacionLabel_idtipohabitacion}" for="idtipohabitacion" />
+                        <p:inputText id="idtipohabitacion" value="#{tipohabitacionController.selected.idtipohabitacion}" title="#{bundle.CreateTipohabitacionTitle_idtipohabitacion}" required="true" requiredMessage="#{bundle.CreateTipohabitacionRequiredMessage_idtipohabitacion}"/>
+                        <p:outputLabel value="#{bundle.CreateTipohabitacionLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipohabitacionController.selected.descripcion}" title="#{bundle.CreateTipohabitacionTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateTipohabitacionLabel_nohabitacion}" for="nohabitacion" />
+                        <p:inputText id="nohabitacion" value="#{tipohabitacionController.selected.nohabitacion}" title="#{bundle.CreateTipohabitacionTitle_nohabitacion}" />
+                        <p:outputLabel value="#{bundle.CreateTipohabitacionLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{tipohabitacionController.selected.precio}" title="#{bundle.CreateTipohabitacionTitle_precio}" />
+                        <p:outputLabel value="#{bundle.CreateTipohabitacionLabel_numeropiso}" for="numeropiso" />
+                        <p:inputText id="numeropiso" value="#{tipohabitacionController.selected.numeropiso}" title="#{bundle.CreateTipohabitacionTitle_numeropiso}" />
+                        <p:outputLabel value="#{bundle.CreateTipohabitacionLabel_nopersonas}" for="nopersonas" />
+                        <p:inputText id="nopersonas" value="#{tipohabitacionController.selected.nopersonas}" title="#{bundle.CreateTipohabitacionTitle_nopersonas}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipohabitacionController.create}" value="#{bundle.Save}" update="display,:TipohabitacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipohabitacionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipohabitacionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
